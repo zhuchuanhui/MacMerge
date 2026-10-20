@@ -24,7 +24,7 @@
 - **Commit convention:** Conventional Commits
 - **CI:** 既存macOS/Windows設定あり。ローカルで同等のチェックを実行。リモートCI結果は未確認。
 - **Release method:** v0.1.0を準備。既存ワークフローは手動実行でドラフトを生成。main・v0.1.0をpushし、CI成功後にReleaseを公開する。
-- **Latest release:** 未確認。
+- **Latest release:** [v0.1.0](https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.1.0)（非公開リポジトリ内で公開）。
 - **Release verification:** npm run check:releaseでバージョン・配置設定を検証。
 
 ## Deployment decision
@@ -96,3 +96,13 @@ deployment:
 - 初回CIはWindowsのCRLF改行でバージョン検証が誤判定して失敗。macOSジョブはキャンセル。バージョン検証・更新スクリプトをCRLF対応に修正し、CRLFファイルの検証成功。
 - macOSのsigningIdentityをアドホック署名に明示設定。arm64 app・DMG再生成成功。DMGチェックサム、内包アプリの厳格な署名検証、バージョン0.1.0を確認。Developer ID署名・公証なし。
 - ユーザーが修正のcommit・push・CI再実行・Release公開を承認。CI成功後にv0.1.0を公開する。
+
+## v0.1.0公開結果（2026-10-20）
+
+- リリース対象コミット: 4991a8dd19a1aae361eadcd8702e7e3211dc270c。タグv0.1.0をoriginへpush。
+- GitHub CI 39376713871: macOS・Windowsともバージョン検証、フロントエンドビルド、Rustテスト成功。
+- Release: https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.1.0 。ドラフトではない正式リリース。リポジトリは非公開を維持。
+- 添付: MacMerge_0.1.0_aarch64.dmg（4,201,300 bytes）、SHA256SUMS.txt。ローカル生成・検証したDMGを直接添付（手動ドラフト生成ワークフローは未実行）。
+- 公開後にGitHubからダウンロードしSHA-256一致を確認。DMGはarm64、内包バージョン0.1.0、アドホック署名検証成功。
+- SHA-256: 99b9fada94b70e006aea5713d9b4c551910dcfb1387442108df02ace9960cb89。
+- Developer ID署名・公証、他のMacでの起動、Windows実機動作は未検証。今回のUI再検証なし。本番デプロイなし。
