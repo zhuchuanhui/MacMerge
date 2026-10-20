@@ -6,7 +6,7 @@ for (const file of ['package-lock.json', 'src-tauri/tauri.conf.json']) {
   if (data.version !== version || (data.packages?.[''] && data.packages[''].version !== version)) throw new Error(`Version mismatch: ${file}`);
 }
 for (const file of ['src-tauri/Cargo.toml', 'src-tauri/Cargo.lock']) {
-  if (fs.readFileSync(file, 'utf8').match(/name = "macmerge"\nversion = "([^"]+)"/)?.[1] !== version) throw new Error(`Version mismatch: ${file}`);
+  if (fs.readFileSync(file, 'utf8').match(/name = "macmerge"\r?\nversion = "([^"]+)"/)?.[1] !== version) throw new Error(`Version mismatch: ${file}`);
 }
 if (process.argv[2] && process.argv[2] !== `v${version}`) throw new Error('Release tag must match package version');
 const config = read('deployment.config.json');

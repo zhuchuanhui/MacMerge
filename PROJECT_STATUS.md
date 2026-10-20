@@ -89,3 +89,10 @@ deployment:
 - `npm run build`、`npm run check:release`、Rustテスト5件成功。Viteのサイズ警告あり。
 - 一時レンダリング画像の`tmp/`をGit管理から除外。
 - 本番デプロイなし。Developer ID署名・公証、Windows実機、今回の変更のUI再検証は未実施。
+
+## リリース修正（2026-10-20）
+
+- 初回コミットcdbbd71を非公開のorigin/mainへpush済み。Release・タグは未公開。
+- 初回CIはWindowsのCRLF改行でバージョン検証が誤判定して失敗。macOSジョブはキャンセル。バージョン検証・更新スクリプトをCRLF対応に修正し、CRLFファイルの検証成功。
+- macOSのsigningIdentityをアドホック署名に明示設定。arm64 app・DMG再生成成功。DMGチェックサム、内包アプリの厳格な署名検証、バージョン0.1.0を確認。Developer ID署名・公証なし。
+- ユーザーが修正のcommit・push・CI再実行・Release公開を承認。CI成功後にv0.1.0を公開する。

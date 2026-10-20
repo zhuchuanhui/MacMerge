@@ -9,7 +9,7 @@ for (const file of ['package.json', 'package-lock.json', 'src-tauri/tauri.conf.j
 }
 for (const file of ['src-tauri/Cargo.toml', 'src-tauri/Cargo.lock']) {
   const source = fs.readFileSync(file, 'utf8');
-  const pattern = /(name = "macmerge"\nversion = ")[^"]+("[\r\n])/;
+  const pattern = /(name = "macmerge"\r?\nversion = ")[^"]+("[\r\n])/;
   if (!pattern.test(source)) throw new Error(`Package version missing: ${file}`);
   fs.writeFileSync(file, source.replace(pattern, `$1${version}$2`));
 }
