@@ -1,0 +1,22 @@
+[package]
+name = "macmerge"
+version = "0.1.0"
+description = "Cross-platform text diff and merge"
+authors = ["MacMerge"]
+edition = "2021"
+
+[lib]
+name = "macmerge_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+serde = { version = "1", features = ["derive"] }
+similar = "2"
+pdf-extract = "0.12.1"
+tempfile = "3"

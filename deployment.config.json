@@ -1,0 +1,7 @@
+{
+  "deploymentMode": "undecided",
+  "provider": null,
+  "environment": null,
+  "deploymentTrigger": "none",
+  "requiresApproval": true
+}

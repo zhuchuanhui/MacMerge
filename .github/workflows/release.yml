@@ -1,0 +1,50 @@
+name: Draft GitHub Release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag (e.g. v0.1.0)
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: node scripts/check-release.mjs "$RELEASE_TAG"
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: npm run tauri:build -- --bundles dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-release
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+          if-no-files-found: error
+  draft:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: macos-release
+          path: artifacts
+      - name: Create draft and attach build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          gh release create "$RELEASE_TAG" artifacts/*.dmg --verify-tag --draft --title "$RELEASE_TAG" --notes "macOS build. Signing and notarization are not configured."

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+ <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6079F6"/><stop offset="1" stop-color="#394CB8"/></linearGradient><linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF2FF"/></linearGradient><filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#172A78" flood-opacity=".28"/></filter></defs>
+ <rect x="64" y="64" width="896" height="896" rx="214" fill="url(#bg)"/>
+ <g filter="url(#shadow)"><rect x="218" y="210" width="268" height="604" rx="42" fill="url(#paper)"/><rect x="538" y="210" width="268" height="604" rx="42" fill="url(#paper)"/></g>
+ <g fill="none" stroke-linecap="round" stroke-width="24"><path d="M270 316h164M270 376h102M270 436h138M270 592h110" stroke="#98A8F5"/><path d="M590 316h164M590 376h118M590 436h148M590 592h130" stroke="#98A8F5"/><path d="M270 532h164" stroke="#F18C74"/><path d="M590 532h164" stroke="#5BC99A"/></g>
+ <path d="M427 708h170" fill="none" stroke="#FFFFFF" stroke-width="30" stroke-linecap="round"/><path d="m566 665 48 43-48 43" fill="none" stroke="#FFFFFF" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/><path d="M597 770H427" fill="none" stroke="#DDE4FF" stroke-width="30" stroke-linecap="round"/><path d="m458 727-48 43 48 43" fill="none" stroke="#DDE4FF" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
