@@ -12,7 +12,7 @@
 
 - **Platform / technology:** Rust + Tauri 2 + React + TypeScript + CodeMirror 6。既存のクロスプラットフォーム設計を継続。
 - **Current state:** 最大20項目を開ける（1ファイル20MB以下、読込後合計100MB以下）。Aを基準にB〜Eを最大4組同時比較する5列レイアウト、差分ナビゲーション・変更採用・テキスト保存を実装。PDF、DOCX/ODT、PPTX、XLS/XLSX/ODSは読み取り専用で抽出テキストを比較。フォルダは対応ファイルを再帰的に集め、相対パス付きの比較レポートにして比較する。
-- **Next step:** 現在の検証依頼はmacOS版を対象とし、2026-10-25に完了。Windows版の実機検証は引き続き未実施だが、ユーザー指定により今回の対象外。
+- **Next step:** Windows x64インストーラーをv0.2.0としてGitHub Releaseへ公開し、ユーザーのWindows PCで導入・起動確認。
 - **Verification:** 下記の最終確認欄を参照。
 - **Local artifact:** /Users/d/github/MacMerge/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/MacMerge.app
 - **Supported files:** UTF-8テキスト、PDF、DOCX、ODT、PPTX、XLS、XLSX、ODS。フォルダは2,000対象ファイル・50MBまで。1ファイル20MB以下、全体100MB以下、最大20項目を開いて最大5列表示。Office文書・PDF・フォルダは読み取り専用。スキャンPDF、画像・レイアウト・書式比較、OCR、構造化文書への書き戻しは未対応。
@@ -22,8 +22,8 @@
 - **Repository:** https://github.com/zhuchuanhui/MacMerge （非公開）
 - **Branch / PR:** main、初回コミットを作成。PRなし。
 - **Commit convention:** Conventional Commits
-- **CI:** 既存macOS/Windows設定あり。ローカルで同等のチェックを実行。リモートCI結果は未確認。
-- **Release method:** v0.1.0を準備。既存ワークフローは手動実行でドラフトを生成。main・v0.1.0をpushし、CI成功後にReleaseを公開する。
+- **CI:** macOS/Windows matrix CIあり。現行mainのcommit `642ae6f`（v0.2.0ソース）は2026-10-24に両OSのCI成功。
+- **Release method:** 手動workflow dispatchで既存version tagからmacOS DMGとWindows x64 NSIS setup EXEをビルドし、SHA256一覧付きのdraft GitHub Releaseを作成。CI/両プラットフォームのbuild成功後に公開。
 - **Latest release:** [v0.1.0](https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.1.0)（非公開リポジトリ内で公開）。
 - **Release verification:** npm run check:releaseでバージョン・配置設定を検証。
 
@@ -46,7 +46,7 @@ deployment:
 
 ## Risks and open decisions
 
-- Windows実機での操作は未検証。Parallels Desktopはあるが`prlctl list -a`では登録VMがなく、現在のMac環境には`rustup`がなくRustターゲットも`aarch64-apple-darwin`のみのためWindows向けネイティブビルドを実行できない。CI定義はmacOS/Windowsの両方を対象にするが、未pushの現作業ツリーに対するリモートCI結果はない。
+- Windows実機での操作は未検証。Parallels Desktopはあるが`prlctl list -a`では登録VMがなく、このMacではWindows版を直接実行できない。現行mainのWindows CIは成功済みだが、Windows installer buildは未実施。Parallels Desktopには登録VMがなく、`rustup`もないためローカルWindows buildはできない。
 - Finderからの実ドラッグは2026-10-25に実アプリで確認済み。`Peer.txt`のドロップ後に6/20件となり、Peer.txtが比較画面の基準Aとして表示された。Windows実機操作は未検証。
 - 保存前の内容照合と原子的置換の間に発生する同時更新は排他制御していない。
 - 未保存編集はメモリ上のみで、強制終了・クラッシュ後の復元は未対応。通常の⌘Qとウインドウを閉じる操作には終了確認を実装し、キャンセル時に編集が保持されることを実アプリで確認済み。
@@ -66,6 +66,13 @@ deployment:
 - 既存の検証記録には開始/履歴、複数ファイル・最大5列、差分位置/ナビゲーション、変更採用、編集・保存、基準ファイル切替、フォルダ比較/フィルター/HTMLレポート、日本語/英語/中国語、PDF/Office抽出、読み込み上限、終了確認の実アプリ確認とRust境界テストを記録済み。
 - 現行ソースで`npm run test:rust`（13件）、`npm run build`、`npm run check:release`、`git diff --check`成功。フロントエンドは約575KBのバンドル警告あり。前回のソース変更時に既存アプリを終了・同じ`.app`を再ビルド・再起動しており、今回の変更は状態記録のみ。
 - 公開・デプロイ・コミットなし。スキャンPDFのOCR、画像/レイアウト/書式比較、構造化文書への書き戻しは未対応。
+
+## Windows版v0.2.0リリース準備（2026-10-25）
+
+- ユーザー依頼により、非公開リポジトリ`zhuchuanhui/MacMerge`でWindows版の検証用releaseを用意する。対象branchは`main`、現行versionは0.2.0、既存latest releaseはv0.1.0。
+- `.github/workflows/release.yml`を更新し、Windows x64 runnerでNSIS setup EXEを作成。macOS DMGとWindows setup EXE、SHA256一覧を含むdraftを作る。Release作成jobだけに`contents: write`を与え、追加Secretsやコード署名は使わない。本番デプロイなし。
+- 現行main `642ae6f` のCI run `40108739128` はmacOS・Windowsとも成功。ローカル`npm run test:rust`（13件）、`npm run build`、`node scripts/check-release.mjs v0.2.0`、Release workflowのYAML parse、`git diff --check`も成功。Windows installerの実ビルド・実行はGitHub ActionsとユーザーPCで確認する。
+- リポジトリはprivate。GitHub branch-protection APIはFree private repositoryのプラン制限で読み取り拒否（403）。
 
 ## 最終確認（2026-10-20）
 

@@ -3,13 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing version tag (e.g. v0.1.0)
+        description: Existing version tag (e.g. v0.2.0)
         required: true
         type: string
 permissions:
   contents: read
 jobs:
-  build:
+  build-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,8 +31,33 @@ jobs:
           name: macos-release
           path: src-tauri/target/release/bundle/dmg/*.dmg
           if-no-files-found: error
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - name: Verify release tag and versions
+        run: node scripts/check-release.mjs "$env:RELEASE_TAG"
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: npm run tauri:build -- --bundles nsis
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-release
+          path: src-tauri/target/release/bundle/nsis/*.exe
+          if-no-files-found: error
+
   draft:
-    needs: build
+    needs: [build-macos, build-windows]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -41,10 +66,26 @@ jobs:
         with:
           name: macos-release
           path: artifacts
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows-release
+          path: artifacts
+      - name: Generate checksums and release notes
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          sha256sum artifacts/*.dmg artifacts/*.exe > artifacts/SHA256SUMS.txt
+          {
+            printf 'MacMerge %s\n\n' "$RELEASE_TAG"
+            printf '%s\n' '- macOS Apple Silicon disk image.'
+            printf '%s\n' '- Windows x64 NSIS setup executable.'
+            printf '%s\n' '- SHA256 checksums for both installers.'
+            printf '\n%s\n' 'Windows and macOS installers are unsigned. The macOS build is not notarized.'
+          } > artifacts/RELEASE_NOTES.md
       - name: Create draft and attach build
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ inputs.tag }}
         run: |
-          gh release create "$RELEASE_TAG" artifacts/*.dmg --verify-tag --draft --title "$RELEASE_TAG" --notes "macOS build. Signing and notarization are not configured."
+          gh release create "$RELEASE_TAG" artifacts/*.dmg artifacts/*.exe artifacts/SHA256SUMS.txt --verify-tag --draft --title "$RELEASE_TAG" --notes-file artifacts/RELEASE_NOTES.md
