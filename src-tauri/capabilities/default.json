@@ -1,1 +1,1 @@
-{"$schema":"../gen/schemas/desktop-schema.json","identifier":"default","description":"Default permissions for MacMerge","windows":["main"],"permissions":["core:default","dialog:allow-open","fs:allow-read-text-file"]}
+{"$schema":"../gen/schemas/desktop-schema.json","identifier":"default","description":"Default permissions for MacMerge","windows":["main"],"permissions":["core:default","dialog:allow-confirm","dialog:allow-open","dialog:allow-save","fs:allow-read-text-file","fs:allow-write-text-file"]}

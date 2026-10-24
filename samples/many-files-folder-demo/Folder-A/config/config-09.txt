@@ -1,0 +1,8 @@
+# Config sample 09
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 09
+Status: review
+Owner: team-02
+Description: This shared file is included to make folder comparison realistic.

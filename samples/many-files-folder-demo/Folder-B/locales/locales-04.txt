@@ -1,0 +1,8 @@
+# Locales sample 04
+
+Project: MacMerge folder comparison demo
+Group: locales
+Record: 04
+Status: active
+Owner: team-07
+Description: This shared file is included to make folder comparison realistic.

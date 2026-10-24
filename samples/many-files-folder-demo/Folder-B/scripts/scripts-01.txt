@@ -1,0 +1,8 @@
+# Scripts sample 01
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 101
+Status: complete
+Owner: team-05
+Description: This shared file is updated to demonstrate a readable content change.

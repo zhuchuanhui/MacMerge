@@ -1,0 +1,280 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MacMerge フォルダ比較レポート</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f3f7;color:#292633;font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.page{max-width:1180px;margin:32px auto;padding:0 20px}.head,.file-list{background:#fff;border:1px solid #e6e2eb;border-radius:14px;box-shadow:0 3px 12px #2415330a}.head{padding:22px 26px;margin-bottom:16px}.head h1{margin:0;font-size:23px}.head p{color:#81788b;margin:5px 0}.pair{font-size:16px;font-weight:600}.pair span{color:#a399b0;padding:0 8px}.summary{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}.pill{padding:5px 10px;border-radius:16px;font-weight:600;font-size:12px}.pill.changed,.changed .state{background:#fff0ce;color:#8a5a00}.pill.added,.added .state{background:#dcf7e3;color:#22733f}.pill.deleted,.deleted .state{background:#ffe2e0;color:#a33f37}.pill.same,.same .state{background:#f0eef3;color:#686171}.file-list{overflow:hidden}.file-list h2{margin:0;padding:14px 18px;border-bottom:1px solid #ece9ef;font-size:15px}.file-list table{width:100%;border-collapse:collapse}.file-list th{text-align:left;color:#81788b;background:#faf9fb;font-size:11px;padding:9px 14px}.file-list td{padding:10px 14px;border-top:1px solid #f0edf3;vertical-align:top}.file-list tr.changed{background:#fffaf0}.file-list tr.added{background:#f5fcf6}.file-list tr.deleted{background:#fff7f6}.state{display:inline-block;min-width:48px;padding:2px 7px;border-radius:12px;text-align:center;font-size:10px;font-weight:700}.file-list code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}.file-list details{margin-top:6px}.file-list summary{color:#7355ad;font-size:11px;cursor:pointer}.contents{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}.contents section{min-width:0;border:1px solid #e9e5ee;border-radius:7px;overflow:hidden}.contents h4{margin:0;padding:6px 9px;background:#f8f6fa;font-size:11px}.contents section:first-child{border-color:#edb7b2;background:#fff8f7}.contents section:first-child h4{background:#ffe5e2;color:#9a3933}.contents section:last-child{border-color:#a9d7b3;background:#f5fcf6}.contents section:last-child h4{background:#daf2e0;color:#246c38}.contents pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:9px;font:11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;max-height:360px;overflow:auto}.empty{color:#a8a1ae}@media(max-width:650px){.contents{grid-template-columns:1fr}}@media print{body{background:white}.page{max-width:none;margin:0;padding:0}.head,.file-list{box-shadow:none}.file-list tr{break-inside:avoid}.contents{grid-template-columns:1fr 1fr}}
+</style></head><body><main class="page"><header class="head"><h1>MacMerge フォルダ比較レポート</h1><p class="pair">Folder-A <span>↔</span> Folder-B</p><p>作成日時: 2026/10/20 17:31:33 · ファイル数: 103</p><div class="summary"><span class="pill changed">変更 17</span><span class="pill added">追加 3</span><span class="pill deleted">削除 2</span><span class="pill same">同一 81</span></div></header><section class="file-list"><h2>相対パスごとの比較結果</h2><table><thead><tr><th>状態</th><th>ファイル</th></tr></thead><tbody><tr class="changed"><td><span class="state">変更</span></td><td><code>config/application.json</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre>{
+  &quot;application&quot;: &quot;MacMerge demo&quot;,
+  &quot;environment&quot;: &quot;staging&quot;,
+  &quot;limits&quot;: {
+    &quot;files&quot;: 2000,
+    &quot;uploadMb&quot;: 50
+  },
+  &quot;billing&quot;: {
+    &quot;monthlyAmount&quot;: 120000
+  },
+  &quot;features&quot;: [
+    &quot;folder-compare&quot;,
+    &quot;text-diff&quot;
+  ]
+}</pre></section><section><h4>変更後 · B · Folder-B</h4><pre>{
+  &quot;application&quot;: &quot;MacMerge demo&quot;,
+  &quot;environment&quot;: &quot;production&quot;,
+  &quot;limits&quot;: {
+    &quot;files&quot;: 2000,
+    &quot;uploadMb&quot;: 50
+  },
+  &quot;billing&quot;: {
+    &quot;monthlyAmount&quot;: 125000
+  },
+  &quot;features&quot;: [
+    &quot;folder-compare&quot;,
+    &quot;text-diff&quot;
+  ]
+}</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>config/config-01.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Config sample 01
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 01
+Status: active
+Owner: team-02
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Config sample 01
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 101
+Status: complete
+Owner: team-02
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>config/config-02.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Config sample 02
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 02
+Status: active
+Owner: team-02
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Config sample 02
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 102
+Status: complete
+Owner: team-02
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>config/config-03.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Config sample 03
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 03
+Status: review
+Owner: team-02
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Config sample 03
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 103
+Status: review
+Owner: team-02
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>data/data-01.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Data sample 01
+
+Project: MacMerge folder comparison demo
+Group: data
+Record: 01
+Status: active
+Owner: team-03
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Data sample 01
+
+Project: MacMerge folder comparison demo
+Group: data
+Record: 101
+Status: complete
+Owner: team-03
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>data/data-02.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Data sample 02
+
+Project: MacMerge folder comparison demo
+Group: data
+Record: 02
+Status: active
+Owner: team-03
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Data sample 02
+
+Project: MacMerge folder comparison demo
+Group: data
+Record: 102
+Status: complete
+Owner: team-03
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>data/data-03.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Data sample 03
+
+Project: MacMerge folder comparison demo
+Group: data
+Record: 03
+Status: review
+Owner: team-03
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Data sample 03
+
+Project: MacMerge folder comparison demo
+Group: data
+Record: 103
+Status: review
+Owner: team-03
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>data/users.csv</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre>id,name,status
+1001,Aiko,active
+1002,Ren,review</pre></section><section><h4>変更後 · B · Folder-B</h4><pre>id,name,status
+1001,Aiko,active
+1002,Ren,complete
+1003,Mina,new</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>docs/docs-01.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Docs sample 01
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 01
+Status: active
+Owner: team-01
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Docs sample 01
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 101
+Status: complete
+Owner: team-01
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>docs/docs-02.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Docs sample 02
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 02
+Status: active
+Owner: team-01
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Docs sample 02
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 102
+Status: complete
+Owner: team-01
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>docs/docs-03.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Docs sample 03
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 03
+Status: review
+Owner: team-01
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Docs sample 03
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 103
+Status: review
+Owner: team-01
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>logs/logs-01.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Logs sample 01
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 01
+Status: active
+Owner: team-04
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Logs sample 01
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 101
+Status: complete
+Owner: team-04
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>logs/logs-02.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Logs sample 02
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 02
+Status: active
+Owner: team-04
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Logs sample 02
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 102
+Status: complete
+Owner: team-04
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>logs/logs-03.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Logs sample 03
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 03
+Status: review
+Owner: team-04
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Logs sample 03
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 103
+Status: review
+Owner: team-04
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>scripts/scripts-01.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Scripts sample 01
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 01
+Status: active
+Owner: team-05
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Scripts sample 01
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 101
+Status: complete
+Owner: team-05
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>scripts/scripts-02.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Scripts sample 02
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 02
+Status: active
+Owner: team-05
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Scripts sample 02
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 102
+Status: complete
+Owner: team-05
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="changed"><td><span class="state">変更</span></td><td><code>scripts/scripts-03.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Scripts sample 03
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 03
+Status: review
+Owner: team-05
+Description: This shared file is included to make folder comparison realistic.</pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Scripts sample 03
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 103
+Status: review
+Owner: team-05
+Description: This shared file is updated to demonstrate a readable content change.</pre></section></div></details></td></tr><tr class="added"><td><span class="state">追加</span></td><td><code>docs/release-notes/2026/release.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre><span class="empty">このフォルダにはありません</span></pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Release notes
+
+Folder-B adds this nested release note.</pre></section></div></details></td></tr><tr class="added"><td><span class="state">追加</span></td><td><code>reports/reports-09.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre><span class="empty">このフォルダにはありません</span></pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Reports sample 09
+
+Project: MacMerge folder comparison demo
+Group: reports
+Record: 09
+Status: review
+Owner: team-06
+Description: This shared file is included to make folder comparison realistic.
+Disposition: newly added in Folder-B</pre></section></div></details></td></tr><tr class="added"><td><span class="state">追加</span></td><td><code>reports/reports-10.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre><span class="empty">このフォルダにはありません</span></pre></section><section><h4>変更後 · B · Folder-B</h4><pre># Reports sample 10
+
+Project: MacMerge folder comparison demo
+Group: reports
+Record: 10
+Status: active
+Owner: team-06
+Description: This shared file is included to make folder comparison realistic.
+Disposition: newly added in Folder-B</pre></section></div></details></td></tr><tr class="deleted"><td><span class="state">削除</span></td><td><code>operations/operations-09.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Operations sample 09
+
+Project: MacMerge folder comparison demo
+Group: operations
+Record: 09
+Status: review
+Owner: team-10
+Description: This shared file is included to make folder comparison realistic.
+Disposition: removed from Folder-B</pre></section><section><h4>変更後 · B · Folder-B</h4><pre><span class="empty">このフォルダにはありません</span></pre></section></div></details></td></tr><tr class="deleted"><td><span class="state">削除</span></td><td><code>operations/operations-10.txt</code><details><summary>内容を表示</summary><div class="contents"><section><h4>変更前 · A · Folder-A</h4><pre># Operations sample 10
+
+Project: MacMerge folder comparison demo
+Group: operations
+Record: 10
+Status: active
+Owner: team-10
+Description: This shared file is included to make folder comparison realistic.
+Disposition: removed from Folder-B</pre></section><section><h4>変更後 · B · Folder-B</h4><pre><span class="empty">このフォルダにはありません</span></pre></section></div></details></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-01.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-02.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-03.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>assets-meta/assets-meta-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>config/config-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>data/data-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>docs/docs-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-01.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-02.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-03.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>locales/locales-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>logs/logs-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-01.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-02.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-03.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>operations/operations-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-01.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-02.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-03.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>reports/reports-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>scripts/scripts-10.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-01.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-02.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-03.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-04.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-05.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-06.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-07.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-08.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-09.txt</code></td></tr><tr class="same"><td><span class="state">同一</span></td><td><code>tests/tests-10.txt</code></td></tr></tbody></table></section></main></body></html>

@@ -1,0 +1,8 @@
+# Assets-Meta sample 07
+
+Project: MacMerge folder comparison demo
+Group: assets-meta
+Record: 07
+Status: active
+Owner: team-09
+Description: This shared file is included to make folder comparison realistic.

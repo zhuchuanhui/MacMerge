@@ -1,0 +1,8 @@
+# Logs sample 01
+
+Project: MacMerge folder comparison demo
+Group: logs
+Record: 101
+Status: complete
+Owner: team-04
+Description: This shared file is updated to demonstrate a readable content change.

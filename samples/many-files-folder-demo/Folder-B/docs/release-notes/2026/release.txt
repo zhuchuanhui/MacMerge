@@ -1,0 +1,3 @@
+# Release notes
+
+Folder-B adds this nested release note.

@@ -1,0 +1,8 @@
+# Config sample 02
+
+Project: MacMerge folder comparison demo
+Group: config
+Record: 102
+Status: complete
+Owner: team-02
+Description: This shared file is updated to demonstrate a readable content change.

@@ -38,7 +38,13 @@ npm run build:mac         # Apple Silicon (arm64) のmacOS本番バンドル一�
 
 ## 対応形式と制限
 
-UTF-8テキストとテキスト抽出可能なPDFに対応します。PDFの画像・レイアウト・書式比較、スキャンPDFのOCR、パスワード保護PDF、PDFへの保存、フォルダ比較には対応していません。未保存の編集内容はアプリ終了後には復元されません。
+UTF-8で読み込めるテキストファイルに加え、PDF、Word（DOCX/ODT）、PowerPoint（PPTX）、Excel（XLS/XLSX/ODS）に対応します。Office文書とPDFは抽出したテキストの読み取り専用比較です。Word本文、スライド内テキスト、表計算のセル値を比較します。
+
+開始画面の「フォルダ比較」から2つのフォルダを選ぶと、相対パス付きで中の対応ファイルを比較できます。比較画面では相対パスごとに変更・追加・削除・同一を一覧表示し、状態で絞り込めます。ファイル行を選ぶと左右の本文表示がそのファイルへ移動します。「レポート作成」から件数と状態一覧、差分ファイルの本文を含むHTMLレポートを保存できます。画像や対応外のバイナリ、シンボリックリンクは除外します。`.git`、`node_modules`、`target`、`dist`、`build`、`.venv`、`venv`、`vendor`などの生成・依存フォルダは検索しません。1ファイル20MB以下、1フォルダあたり2,000ファイル・50MBまでです。フォルダとOffice/PDF文書は読み取り専用で、差分採用やファイルへの書き戻しはできません。
+
+PDFのページ画像・レイアウト・書式比較、スキャンPDFのOCR、パスワード保護PDF、Wordのヘッダー・フッターや書式、Office内の画像・図形、表計算の書式・数式自体の比較には対応していません。未保存の編集内容はアプリ終了後には復元されません。
+
+動作確認用サンプル：[`samples/folder-diff-demo`](samples/folder-diff-demo/README.md)、[`samples/many-files-folder-demo`](samples/many-files-folder-demo/README.md)（100件以上のファイル）、[`samples/office-diff-demo`](samples/office-diff-demo/README.md)、[`samples/pdf-diff-demo`](samples/pdf-diff-demo/README.md)。
 
 ## 開発者向けチェック
 

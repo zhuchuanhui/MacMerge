@@ -1,0 +1,8 @@
+# Scripts sample 05
+
+Project: MacMerge folder comparison demo
+Group: scripts
+Record: 05
+Status: active
+Owner: team-05
+Description: This shared file is included to make folder comparison realistic.

@@ -1,6 +1,6 @@
 [package]
 name = "macmerge"
-version = "0.1.0"
+version = "0.2.0"
 description = "Cross-platform text diff and merge"
 authors = ["MacMerge"]
 edition = "2021"
@@ -19,4 +19,7 @@ tauri-plugin-fs = "2"
 serde = { version = "1", features = ["derive"] }
 similar = "2"
 pdf-extract = "0.12.1"
+calamine = "0.37"
+roxmltree = "0.21"
+zip = { version = "9", default-features = false, features = ["deflate"] }
 tempfile = "3"

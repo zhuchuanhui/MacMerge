@@ -1,0 +1,15 @@
+{
+  "application": "MacMerge demo",
+  "environment": "staging",
+  "limits": {
+    "files": 2000,
+    "uploadMb": 50
+  },
+  "billing": {
+    "monthlyAmount": 120000
+  },
+  "features": [
+    "folder-compare",
+    "text-diff"
+  ]
+}

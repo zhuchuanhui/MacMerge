@@ -1,0 +1,8 @@
+# Docs sample 05
+
+Project: MacMerge folder comparison demo
+Group: docs
+Record: 05
+Status: active
+Owner: team-01
+Description: This shared file is included to make folder comparison realistic.

@@ -1,0 +1,9 @@
+# Reports sample 09
+
+Project: MacMerge folder comparison demo
+Group: reports
+Record: 09
+Status: review
+Owner: team-06
+Description: This shared file is included to make folder comparison realistic.
+Disposition: newly added in Folder-B
