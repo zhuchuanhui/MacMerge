@@ -13,11 +13,17 @@ macOS・Windows向けのローカルテキスト差分・マージアプリで�
 - ファイルは端末内で処理。クラウドへアップロードしません
 - 英語、日本語、簡体字中国語のワンクリック切替（設定を保存）
 
+初めて使う方は[操作マニュアル](docs/MANUAL.md)をご覧ください。
+
 ## 必要環境
 
 - Node.js 20.19+ または 22.12+
 - Rust stableとTauri 2のOS別ビルド要件
 - macOS: Xcode Command Line Tools
+
+## Windows版を試す
+
+[MacMerge v0.2.0 Windows x64 インストーラー](https://github.com/zhuchuanhui/MacMerge/releases/download/v0.2.0/MacMerge_0.2.0_x64-setup.exe)をダウンロードしてください。インストーラーは未署名です。Windows実機での起動・機能確認はこれからです。
 
 ## 開発起動
 
@@ -58,4 +64,4 @@ npm run check:release
 
 GitHub Releaseと本番デプロイは別の操作として管理します。現在のデプロイ設定は `undecided` です。本番用リソースの作成やデプロイは行いません。設定は [`deployment.config.json`](deployment.config.json)、開発・リリース手順は [`AGENTS.md`](AGENTS.md) を参照してください。
 
-署名・公証、Windowsの実機動作、外部配布は未確認です。
+macOSビルドは未公証です。Windows版はv0.2.0インストーラーを公開済みですが、Windows実機での起動・機能確認は未完了です。

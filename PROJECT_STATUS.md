@@ -12,19 +12,19 @@
 
 - **Platform / technology:** Rust + Tauri 2 + React + TypeScript + CodeMirror 6。既存のクロスプラットフォーム設計を継続。
 - **Current state:** 最大20項目を開ける（1ファイル20MB以下、読込後合計100MB以下）。Aを基準にB〜Eを最大4組同時比較する5列レイアウト、差分ナビゲーション・変更採用・テキスト保存を実装。PDF、DOCX/ODT、PPTX、XLS/XLSX/ODSは読み取り専用で抽出テキストを比較。フォルダは対応ファイルを再帰的に集め、相対パス付きの比較レポートにして比較する。
-- **Next step:** Windows x64インストーラーをv0.2.0としてGitHub Releaseへ公開し、ユーザーのWindows PCで導入・起動確認。
+- **Next step:** ユーザーのWindows PCでv0.2.0を導入し、起動と各機能を確認。
 - **Verification:** 下記の最終確認欄を参照。
 - **Local artifact:** /Users/d/github/MacMerge/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/MacMerge.app
 - **Supported files:** UTF-8テキスト、PDF、DOCX、ODT、PPTX、XLS、XLSX、ODS。フォルダは2,000対象ファイル・50MBまで。1ファイル20MB以下、全体100MB以下、最大20項目を開いて最大5列表示。Office文書・PDF・フォルダは読み取り専用。スキャンPDF、画像・レイアウト・書式比較、OCR、構造化文書への書き戻しは未対応。
 
 ## GitHub and release
 
-- **Repository:** https://github.com/zhuchuanhui/MacMerge （非公開）
+- **Repository:** https://github.com/zhuchuanhui/MacMerge （公開）
 - **Branch / PR:** main、初回コミットを作成。PRなし。
 - **Commit convention:** Conventional Commits
-- **CI:** macOS/Windows matrix CIあり。現行mainのcommit `642ae6f`（v0.2.0ソース）は2026-10-24に両OSのCI成功。
+- **CI:** macOS/Windows matrix CIあり。commit `481b215` とv0.2.0タグのCIがmacOS/Windows両方で成功。
 - **Release method:** 手動workflow dispatchで既存version tagからmacOS DMGとWindows x64 NSIS setup EXEをビルドし、SHA256一覧付きのdraft GitHub Releaseを作成。CI/両プラットフォームのbuild成功後に公開。
-- **Latest release:** [v0.1.0](https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.1.0)（非公開リポジトリ内で公開）。
+- **Latest release:** [v0.2.0](https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.2.0)（公開）。macOS Apple Silicon DMG、Windows x64 NSIS EXE、SHA256SUMS.txtを添付。
 - **Release verification:** npm run check:releaseでバージョン・配置設定を検証。
 
 ## Deployment decision
@@ -46,7 +46,7 @@ deployment:
 
 ## Risks and open decisions
 
-- Windows実機での操作は未検証。Parallels Desktopはあるが`prlctl list -a`では登録VMがなく、このMacではWindows版を直接実行できない。現行mainのWindows CIは成功済みだが、Windows installer buildは未実施。Parallels Desktopには登録VMがなく、`rustup`もないためローカルWindows buildはできない。
+- Windows実機での操作は未検証。Parallels Desktopはあるが`prlctl list -a`では登録VMがなく、このMacではWindows版を直接実行できない。Windows installer buildはGitHub Actionsで成功し、ユーザーのWindows PCで確認予定。
 - Finderからの実ドラッグは2026-10-25に実アプリで確認済み。`Peer.txt`のドロップ後に6/20件となり、Peer.txtが比較画面の基準Aとして表示された。Windows実機操作は未検証。
 - 保存前の内容照合と原子的置換の間に発生する同時更新は排他制御していない。
 - 未保存編集はメモリ上のみで、強制終了・クラッシュ後の復元は未対応。通常の⌘Qとウインドウを閉じる操作には終了確認を実装し、キャンセル時に編集が保持されることを実アプリで確認済み。
@@ -251,4 +251,15 @@ deployment:
 - ユーザーのcommit・push・Release指示に基づき、フォルダ比較、Office文書抽出、HTMLレポート、比較表示改善、終了保護をv0.2.0として公開準備。
 - package.json・package-lock.json・Tauri設定・Cargo.toml・Cargo.lockを0.2.0へ統一。
 - ローカルRustテスト13件、フロントエンドビルド、release設定チェック成功。バンドルサイズ警告あり。
-- 配布対象はApple Silicon向けmacOS DMG。アドホック署名を使用し、Developer ID署名・公証なし。非公開リポジトリを維持。本番デプロイなし。
+- 配布対象はApple Silicon向けmacOS DMG。アドホック署名を使用し、Developer ID署名・公証なし。GitHub Releaseのみ公開、本番デプロイなし。
+
+## v0.2.0リリース（2026-10-25）
+
+- ユーザーのリリース指示に基づき、commit `481b215` をタグ`v0.2.0`として公開。GitHub ActionsのmacOS/Windows CI、macOS DMG作成、Windows x64 NSIS EXE作成がすべて成功。
+- Windowsインストーラー: `MacMerge_0.2.0_x64-setup.exe`（3,162,462 bytes）。SHA-256 `442373adea450f29256a49642320479d871f37fcfeee8e4e09995b578d65b5fa`。GitHub Releaseの`SHA256SUMS.txt`とダウンロード済みEXEで照合済み。
+- GitHub Release: https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.2.0 。WindowsとmacOSのビルドは未署名（macOSは未公証）。Windows実機確認待ち。本番デプロイなし。
+
+## GitHub公開・履歴の個人メール除去（2026-10-25）
+
+- ユーザーの指示に基づき、Git履歴の作者・コミッター・タグ作成者メールをGitHub noreplyアドレスへ置換し、履歴を書き換えてからリポジトリを公開。
+- READMEから日本語の操作マニュアルへ案内し、フォルダ比較画面のスクリーンショットと状態の説明を追加。サンプルデータだけを使い、公開履歴と追跡ファイルに個人メールアドレスがないことを確認。
