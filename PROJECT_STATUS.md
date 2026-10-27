@@ -279,3 +279,10 @@ deployment:
 - v0.2.0はmacOS DMG・Windows EXE付きで公開済みと確認。再公開は行わない。
 - 未公開の4言語切替とmacOSメニュー改善をv0.2.1へまとめる。既存の配布ワークフローでタグからmacOS・Windowsをビルドし、ドラフト確認後に公開する。
 - Developer ID署名・公証とWindows実機動作は未検証。本番デプロイなし。
+
+## v0.2.1公開結果（2026-10-28）
+
+- https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.2.1 を正式公開。対象10e8919、タグv0.2.1。
+- main・タグのCIと配布ワークフロー40599795590成功。macOS DMG・Windows x64 EXE・SHA256SUMS.txt添付済み。
+- GitHubから両配布物をダウンロードしてSHA-256照合成功。DMG内アプリの0.2.1・arm64・厳格な署名検証を確認。
+- リポジトリは既存の公開設定を維持。本番デプロイなし。Windows実機、他のMacでの起動、Developer ID署名・公証は未検証。
