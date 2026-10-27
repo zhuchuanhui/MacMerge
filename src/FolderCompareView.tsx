@@ -1,17 +1,19 @@
 import { useMemo, useState } from 'react';
 import { compareFolderTexts, type FolderFileDiff, type FolderStatus } from './folderCompare';
 
-type Language = 'ja' | 'en' | 'zh';
+type Language = 'ja' | 'en' | 'zh-Hans' | 'zh-Hant';
 const copy = {
   ja: { title: 'フォルダ内のファイル', path: '相対パス', status: '状態', all: 'すべて', same: '同一', changed: '変更', added: '追加', deleted: '削除', empty: '比較できるテキストファイルがありません', hint: '行を選ぶと下の差分表示がそのファイルへ移動します' },
   en: { title: 'Files in folders', path: 'Relative path', status: 'Status', all: 'All', same: 'Same', changed: 'Changed', added: 'Added', deleted: 'Deleted', empty: 'No comparable text files', hint: 'Select a row to jump to its content below' },
-  zh: { title: '文件夹中的文件', path: '相对路径', status: '状态', all: '全部', same: '相同', changed: '已修改', added: '新增', deleted: '删除', empty: '没有可比较的文本文件', hint: '选择一行可跳转到下方对应内容' },
+  'zh-Hans': { title: '文件夹中的文件', path: '相对路径', status: '状态', all: '全部', same: '相同', changed: '已修改', added: '新增', deleted: '删除', empty: '没有可比较的文本文件', hint: '选择一行可跳转到下方对应内容' },
+  'zh-Hant': { title: '資料夾中的檔案', path: '相對路徑', status: '狀態', all: '全部', same: '相同', changed: '已修改', added: '新增', deleted: '刪除', empty: '沒有可比較的文字檔案', hint: '選取一列即可跳至下方對應內容' },
 } satisfies Record<Language, Record<string, string>>;
 
 const statusLabel: Record<Language, Record<FolderStatus, string>> = {
   ja: { same: '同一', changed: '変更', added: '追加', deleted: '削除' },
   en: { same: 'Same', changed: 'Changed', added: 'Added', deleted: 'Deleted' },
-  zh: { same: '相同', changed: '已修改', added: '新增', deleted: '删除' },
+  'zh-Hans': { same: '相同', changed: '已修改', added: '新增', deleted: '删除' },
+  'zh-Hant': { same: '相同', changed: '已修改', added: '新增', deleted: '刪除' },
 };
 
 export default function FolderCompareView({ leftText, rightText, leftName, rightName, language, selectedPath, onSelect }: {
@@ -28,7 +30,7 @@ export default function FolderCompareView({ leftText, rightText, leftName, right
 
   return <section className="folder-compare" aria-label={labels.title}>
     <div className="folder-compare-head">
-      <div><h2>{labels.title}</h2><p>{leftName} <span>↔</span> {rightName} · {entries.length} {language === 'ja' ? 'ファイル' : language === 'zh' ? '个文件' : 'files'}</p></div>
+      <div><h2>{labels.title}</h2><p>{leftName} <span>↔</span> {rightName} · {entries.length} {language === 'ja' ? 'ファイル' : language.startsWith('zh') ? '個檔案' : 'files'}</p></div>
       <div className="folder-counts" aria-label={labels.status}>
         {(['changed', 'added', 'deleted', 'same'] as FolderStatus[]).map(status => <span key={status} className={`folder-count ${status}`}><b>{counts[status]}</b>{labels[status]}</span>)}
       </div>

@@ -2,7 +2,7 @@
 
 **Choose a language / 言語を選択 / 选择语言:** [English](README.en.md) · [日本語](README.md) · [简体中文](README.zh-CN.md)
 
-A local text diff and merge app for macOS and Windows. Compare files, accept the changes you need, and save them. Switch the app language at any time with the **EN / 日本語 / 中文** buttons. Your choice is saved between launches.
+A local text diff and merge app for macOS and Windows. Compare files, accept the changes you need, and save them. Switch the app language at any time with the **EN / 日本語 / 简体 / 繁體** buttons. Your choice is saved between launches.
 
 ## Features
 
@@ -11,7 +11,7 @@ A local text diff and merge app for macOS and Windows. Compare files, accept the
 - Side-by-side, Fluid View, and unified views, with optional synchronized scrolling
 - Compare page-by-page extracted PDF text (read-only)
 - Files are processed locally and are not uploaded to a cloud service
-- One-click English, Japanese, and Simplified Chinese UI language selection, persisted across launches
+- One-click English, Japanese, Simplified Chinese, and Traditional Chinese UI language selection, persisted across launches
 
 ## Requirements
 

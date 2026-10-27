@@ -198,57 +198,74 @@ fn request_app_exit(app: tauri::AppHandle, permission: tauri::State<'_, ExitPerm
  permission.0.store(true, Ordering::SeqCst);
  app.exit(0);
 }
+#[tauri::command]
+fn set_app_language(app: tauri::AppHandle, language: String) -> Result<(), String> {
+ #[cfg(target_os = "macos")]
+ {
+  let language = match language.as_str() { "en" | "zh-Hans" | "zh-Hant" => language.as_str(), _ => "ja" };
+  app.set_menu(localized_menu(&app, language).map_err(|e| e.to_string())?).map_err(|e| e.to_string())?;
+ }
+ #[cfg(not(target_os = "macos"))]
+ let _ = (app, language);
+ Ok(())
+}
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 #[cfg(target_os = "macos")]
-fn japanese_menu(app: &tauri::AppHandle) -> tauri::Result<tauri::menu::Menu<tauri::Wry>> {
+fn localized_menu(app: &tauri::AppHandle, language: &str) -> tauri::Result<tauri::menu::Menu<tauri::Wry>> {
  use tauri::menu::{Menu, MenuItem, Submenu, PredefinedMenuItem as Item};
- let quit = MenuItem::with_id(app, "macmerge-quit", "MacMergeを終了", true, Some("CmdOrCtrl+Q"))?;
+ let labels = match language {
+  "en" => ["About MacMerge", "Services", "Hide MacMerge", "Hide Others", "Show All", "Quit MacMerge", "File", "Close Window", "Edit", "Undo", "Redo", "Cut", "Copy", "Paste", "Select All", "View", "Enter Full Screen", "Window", "Minimize", "Zoom", "Help"],
+  "zh-Hans" => ["关于 MacMerge", "服务", "隐藏 MacMerge", "隐藏其他", "全部显示", "退出 MacMerge", "文件", "关闭窗口", "编辑", "撤销", "重做", "剪切", "拷贝", "粘贴", "全选", "显示", "进入全屏幕", "窗口", "最小化", "缩放", "帮助"],
+  "zh-Hant" => ["關於 MacMerge", "服務", "隱藏 MacMerge", "隱藏其他", "顯示全部", "結束 MacMerge", "檔案", "關閉視窗", "編輯", "復原", "重做", "剪下", "拷貝", "貼上", "全選", "顯示方式", "進入全螢幕", "視窗", "最小化", "縮放", "說明"],
+  _ => ["MacMergeについて", "サービス", "MacMergeを非表示", "ほかを非表示", "すべてを表示", "MacMergeを終了", "ファイル", "ウインドウを閉じる", "編集", "取り消す", "やり直す", "カット", "コピー", "ペースト", "すべてを選択", "表示", "フルスクリーンにする", "ウインドウ", "しまう", "拡大／縮小", "ヘルプ"],
+ };
+ let quit = MenuItem::with_id(app, "macmerge-quit", labels[5], true, Some("CmdOrCtrl+Q"))?;
  let app_menu = Submenu::with_items(app, "MacMerge", true, &[
-  &Item::about(app, Some("MacMergeについて"), None)?,
+  &Item::about(app, Some(labels[0]), None)?,
   &Item::separator(app)?,
-  &Item::services(app, Some("サービス"))?,
+  &Item::services(app, Some(labels[1]))?,
   &Item::separator(app)?,
-  &Item::hide(app, Some("MacMergeを非表示"))?,
-  &Item::hide_others(app, Some("ほかを非表示"))?,
-  &Item::show_all(app, Some("すべてを表示"))?,
+  &Item::hide(app, Some(labels[2]))?,
+  &Item::hide_others(app, Some(labels[3]))?,
+  &Item::show_all(app, Some(labels[4]))?,
   &Item::separator(app)?,
   &quit,
  ])?;
- let file = Submenu::with_items(app, "ファイル", true, &[
-  &Item::close_window(app, Some("ウインドウを閉じる"))?,
+ let file = Submenu::with_items(app, labels[6], true, &[
+  &Item::close_window(app, Some(labels[7]))?,
  ])?;
- let edit = Submenu::with_items(app, "編集", true, &[
-  &Item::undo(app, Some("取り消す"))?,
-  &Item::redo(app, Some("やり直す"))?,
+ let edit = Submenu::with_items(app, labels[8], true, &[
+  &Item::undo(app, Some(labels[9]))?,
+  &Item::redo(app, Some(labels[10]))?,
   &Item::separator(app)?,
-  &Item::cut(app, Some("カット"))?,
-  &Item::copy(app, Some("コピー"))?,
-  &Item::paste(app, Some("ペースト"))?,
-  &Item::select_all(app, Some("すべてを選択"))?,
+  &Item::cut(app, Some(labels[11]))?,
+  &Item::copy(app, Some(labels[12]))?,
+  &Item::paste(app, Some(labels[13]))?,
+  &Item::select_all(app, Some(labels[14]))?,
  ])?;
- let view = Submenu::with_items(app, "表示", true, &[
-  &Item::fullscreen(app, Some("フルスクリーンにする"))?,
+ let view = Submenu::with_items(app, labels[15], true, &[
+  &Item::fullscreen(app, Some(labels[16]))?,
  ])?;
- let window = Submenu::with_id_and_items(app, tauri::menu::WINDOW_SUBMENU_ID, "ウインドウ", true, &[
-  &Item::minimize(app, Some("しまう"))?,
-  &Item::maximize(app, Some("拡大／縮小"))?,
+ let window = Submenu::with_id_and_items(app, tauri::menu::WINDOW_SUBMENU_ID, labels[17], true, &[
+  &Item::minimize(app, Some(labels[18]))?,
+  &Item::maximize(app, Some(labels[19]))?,
   &Item::separator(app)?,
-  &Item::close_window(app, Some("ウインドウを閉じる"))?,
+  &Item::close_window(app, Some(labels[7]))?,
  ])?;
- let help = Submenu::with_id_and_items(app, tauri::menu::HELP_SUBMENU_ID, "ヘルプ", true, &[])?;
+ let help = Submenu::with_id_and_items(app, tauri::menu::HELP_SUBMENU_ID, labels[20], true, &[])?;
  Menu::with_items(app, &[&app_menu, &file, &edit, &view, &window, &help])
 }
 
 pub fn run(){tauri::Builder::default().manage(ExitPermission(AtomicBool::new(false))).menu(|app| {
  #[cfg(target_os = "macos")]
- { japanese_menu(app) }
+ { localized_menu(app, "ja") }
  #[cfg(not(target_os = "macos"))]
  { tauri::menu::Menu::default(app) }
 }).on_menu_event(|app, event| {
  if event.id() == "macmerge-quit" {
   let _ = app.emit("macmerge-exit-requested", ());
  }
-}).plugin(tauri_plugin_dialog::init()).plugin(tauri_plugin_fs::init()).invoke_handler(tauri::generate_handler![compare_text,read_text_document,save_text_atomic,request_app_exit]).build(tauri::generate_context!()).expect("error while building tauri application").run(|app, event| {
+}).plugin(tauri_plugin_dialog::init()).plugin(tauri_plugin_fs::init()).invoke_handler(tauri::generate_handler![compare_text,read_text_document,save_text_atomic,request_app_exit,set_app_language]).build(tauri::generate_context!()).expect("error while building tauri application").run(|app, event| {
  if let tauri::RunEvent::ExitRequested { api, .. } = event {
   if !app.state::<ExitPermission>().0.swap(false, Ordering::SeqCst) {
    api.prevent_exit();

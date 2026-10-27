@@ -11,9 +11,9 @@
 ## Implementation
 
 - **Platform / technology:** Rust + Tauri 2 + React + TypeScript + CodeMirror 6。既存のクロスプラットフォーム設計を継続。
-- **Current state:** 最大20項目を開ける（1ファイル20MB以下、読込後合計100MB以下）。Aを基準にB〜Eを最大4組同時比較する5列レイアウト、差分ナビゲーション・変更採用・テキスト保存を実装。PDF、DOCX/ODT、PPTX、XLS/XLSX/ODSは読み取り専用で抽出テキストを比較。フォルダは対応ファイルを再帰的に集め、相対パス付きの比較レポートにして比較する。
+- **Current state:** 最大20項目を開ける（1ファイル20MB以下、読込後合計100MB以下）。Aを基準にB〜Eを最大4組同時比較する5列レイアウト、差分ナビゲーション・変更採用・テキスト保存を実装。PDF、DOCX/ODT、PPTX、XLS/XLSX/ODSは読み取り専用で抽出テキストを比較。フォルダは対応ファイルを再帰的に集め、相対パス付きの比較レポートにして比較する。日本語を初期値とする英語・簡体字中国語・繁体字中国語の切替と言語選択の保存を実装し、macOS標準メニューも選択言語に連動。
 - **Next step:** ユーザーのWindows PCでv0.2.0を導入し、起動と各機能を確認。
-- **Verification:** 下記の最終確認欄を参照。
+- **Verification:** 2026-10-28の4言語切替・保存、macOSメニュー、ビルドと起動の確認を下記に追記。
 - **Local artifact:** /Users/d/github/MacMerge/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/MacMerge.app
 - **Supported files:** UTF-8テキスト、PDF、DOCX、ODT、PPTX、XLS、XLSX、ODS。フォルダは2,000対象ファイル・50MBまで。1ファイル20MB以下、全体100MB以下、最大20項目を開いて最大5列表示。Office文書・PDF・フォルダは読み取り専用。スキャンPDF、画像・レイアウト・書式比較、OCR、構造化文書への書き戻しは未対応。
 
@@ -259,7 +259,23 @@ deployment:
 - Windowsインストーラー: `MacMerge_0.2.0_x64-setup.exe`（3,162,462 bytes）。SHA-256 `442373adea450f29256a49642320479d871f37fcfeee8e4e09995b578d65b5fa`。GitHub Releaseの`SHA256SUMS.txt`とダウンロード済みEXEで照合済み。
 - GitHub Release: https://github.com/zhuchuanhui/MacMerge/releases/tag/v0.2.0 。WindowsとmacOSのビルドは未署名（macOSは未公証）。Windows実機確認待ち。本番デプロイなし。
 
+## 4言語切替・macOSメニュー・起動確認（2026-10-28）
+
+- アプリ内の表示言語を日本語・英語・簡体字中国語・繁体字中国語の4択に拡張。旧形式の`zh`設定は簡体字として読み替える。選択は既存のlocalStorage設定へ保存する。
+- macOSの標準メニューを選択言語に合わせて再構成。日本語、英語、簡体字、繁体字の各表示を追加し、Info.plistの`CFBundleLocalizations`へ`ja`、`en`、`zh-Hans`、`zh-Hant`を登録。
+- READMEの日・英・簡体字中国語版に相互切替リンクが既存であることを確認し、アプリ言語説明を4言語へ更新。
+- `npm run build`、`cargo check --locked --manifest-path src-tauri/Cargo.toml`、`npm run test:rust`（13件）、`npm run check:release`、`git diff --check`成功。Viteの約577KB JavaScriptバンドル警告は継続。
+- `npm run build:mac:app`成功。成果物`/Users/d/github/MacMerge/src-tauri/target/aarch64-apple-darwin/release/bundle/macos/MacMerge.app`（13.70 MiB）、arm64、version 0.2.0、アドホック署名を確認。`codesign --verify --deep --strict`成功、Developer ID署名・公証なし。
+- 既存の稼働プロセスを通常終了してから、ビルド済み`.app`を起動。開始画面と4言語の選択状態をアクセシビリティ表示で確認。英語・簡体字・繁体字の画面表示、標準メニュー見出し（File/Edit/View、文件/编辑/显示、檔案/編輯/顯示方式）、日本語メニュー（ファイル/編集/表示）を実機確認。繁体字を選択して終了・再起動し、選択が復元されることを確認後、日本語へ戻した。
+- 未確認: 4言語すべてで全操作画面・エラー通知を網羅確認したわけではない。Windows実機とFinderからの実ドラッグも引き続き未検証。
+
 ## GitHub公開・履歴の個人メール除去（2026-10-25）
 
 - ユーザーの指示に基づき、Git履歴の作者・コミッター・タグ作成者メールをGitHub noreplyアドレスへ置換し、履歴を書き換えてからリポジトリを公開。
 - READMEから日本語の操作マニュアルへ案内し、フォルダ比較画面のスクリーンショットと状態の説明を追加。サンプルデータだけを使い、公開履歴と追跡ファイルに個人メールアドレスがないことを確認。
+
+## v0.2.1公開準備（2026-10-28）
+
+- v0.2.0はmacOS DMG・Windows EXE付きで公開済みと確認。再公開は行わない。
+- 未公開の4言語切替とmacOSメニュー改善をv0.2.1へまとめる。既存の配布ワークフローでタグからmacOS・Windowsをビルドし、ドラフト確認後に公開する。
+- Developer ID署名・公証とWindows実機動作は未検証。本番デプロイなし。
