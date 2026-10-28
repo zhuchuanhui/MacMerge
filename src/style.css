@@ -46,3 +46,32 @@
 .comparison-picker{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:6px 16px;background:#fdfbff;border-bottom:1px solid #ebe7ef;flex:0 0 auto}.comparison-picker>span{flex:0 0 auto;color:#746b7d;font-size:11px;font-weight:600;margin-right:3px}.comparison-picker>button{display:grid;grid-template-columns:auto minmax(72px,1fr) auto;gap:7px;min-width:180px;max-width:310px;padding:5px 9px;border:1px solid #ded7e8;border-radius:9px;background:#fff;text-align:left}.comparison-picker>button.selected{border-color:#9d79dc;background:#f1eafe;box-shadow:inset 0 0 0 1px #c6a7f1}.comparison-picker strong{color:#7652a8;font-size:10px;white-space:nowrap}.comparison-picker button span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#494451;font-size:11px}.comparison-picker small{color:#8f8797;font-size:9px;white-space:nowrap}
 .pane-visibility-control{display:flex;align-items:center;gap:3px;min-width:max-content;margin-left:auto;padding:3px;border:1px solid #d9d1e2;border-radius:10px;background:#f1eef5}.pane-visibility-control>span{padding:0 5px;color:#716a79;font-size:10px;font-weight:650}.comparison-picker .pane-visibility-control>button{display:inline-flex;align-items:center;justify-content:center;min-width:max-content;padding:5px 9px;border:1px solid transparent;border-radius:7px;background:transparent;color:#756d7c;font-size:10px;font-weight:600}.comparison-picker .pane-visibility-control>button.selected{border-color:#9270cb;background:#fff;color:#583894;box-shadow:0 1px 3px #39226024}.comparison-picker .pane-visibility-control>button:focus-visible{outline:2px solid #7951bd;outline-offset:1px}
 .baseline-picker{display:flex;align-items:center;gap:9px;padding:6px 16px;background:#faf8fd;border-bottom:1px solid #ebe7ef;flex:0 0 auto}.baseline-picker label{font-size:11px;font-weight:650;color:#655279;white-space:nowrap}.baseline-picker select{max-width:min(460px,55vw);padding:5px 28px 5px 9px;border:1px solid #cfbce8;border-radius:8px;background:#fff;color:#493a5d;font:500 11px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.baseline-picker small{font-size:10px;color:#968a9e}.comparison-picker>button strong{white-space:nowrap}
+
+/* Keep the home screen visually connected to the native macOS title bar. */
+.home-shell{background:#fff}
+.sidebar{background:#fff;border-right:0}
+.brand-icon{background:#efedf3;color:#67558b}
+.side-nav button.selected{background:#ece9f1;color:#322d3a}
+.side-nav button svg{color:#75628f}
+.hero{height:300px;background:#fff}
+.hero:after{display:none}
+.glass-button{border-color:#dedbe3;background:#fff;color:#342f3b}
+.glass-button:hover{background:#f0edf4;border-color:#cfc8d8}
+.drop-zone{color:#393344}
+.drop-zone:hover{background:#f1eef5}
+.drop-art{color:#75628f}
+.drop-zone>span:not(.drop-art){color:#6e6875}
+.drop-zone small{color:#89828f}
+.home-body{padding-top:24px}
+.recent-list{background:transparent;border-radius:0;overflow:visible}
+.recent-row{min-height:76px;margin:0 0 4px;padding:15px 16px;border:0;border-radius:10px;background:transparent}
+.recent-row:hover{background:#f0eef3;border-color:transparent}
+.recent-row:last-child{margin-bottom:0}
+.recent-icon{color:#75628f}
+.recent-info em{background:#e5e0eb;color:#5e4d77}
+.sidebar-bottom small{color:#8e8794}
+.language-switch button{border-color:#e1dde5;background:#fff}
+.language-switch button.selected,.language-switch.compact button.selected{background:#67558b;border-color:#67558b;color:#fff}
+.drop-zone{position:absolute;top:64px;left:28px;right:28px;bottom:0;width:auto;height:auto;margin:0;padding:20px 35px 16px;border:0;border-radius:14px;background:#fbfafe;justify-content:center;align-items:center;transition:background .15s}
+.drop-zone:hover{background:#f6f3fa}
+.home-body{padding-top:4px}
